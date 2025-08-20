@@ -220,7 +220,8 @@ async def classify_title(title: str) -> ClassifyOut:
 
 # Build a single line for an event
 async def line_for_event(ev: EventIn, cls: ClassifyOut, tz: str, use_24h: bool, show_loc: bool) -> str:
-    dow = DOW[ev.start.astimezone(timezone.utc).weekday()]
+    local_tz = dateutil_tz.gettz(tz) or timezone.utc
+    dow = DOW[ ev.start.astimezone(local_tz).weekday() ]
     span = f"{fmt_time(ev.start, tz, use_24h)}-{fmt_time(ev.end, tz, use_24h)}"
     bits: list[str] = []
     if cls.code == "WRK" and (cls.tag or "").strip():
