@@ -65,7 +65,9 @@ import recurring_ical_events
 # Config & constants
 # -----------------------------
 
-DOW = ["Su", "M", "T", "W", "Th", "F", "Sa"]
+# replace your DOW with:
+DOW = ["M", "T", "W", "Th", "F", "Sa", "Su"]
+
 
 class Settings(BaseSettings):
     HUGGINGFACE_TOKEN: str | None = None
